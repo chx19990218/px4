@@ -1,0 +1,2 @@
+cmake_utils:cmd_ctrl:mavros_apm:mocap_optitrack:n3ctrl:offboard_pkg:px4_ros:quadrotor_msgs:remote_control:remote_joy:uav_utils
+-DCATKIN_DEVEL_PREFIX=/home/chx/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/chx/catkin_ws/install -G Unix Makefiles

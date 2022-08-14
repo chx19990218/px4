@@ -1,0 +1,81 @@
+#include "log.h"
+
+Logger::Logger(Parameter_t& param_):param(param_){
+	time_t tt = time(NULL);
+	tm* t= localtime(&tt);
+	create_time	<< t->tm_year+1900<<"."
+								<< t->tm_mon+1<<"."
+								<< t->tm_mday<<"--"
+								<< t->tm_hour<<":"
+								<< t->tm_min<<":"
+								<< t->tm_sec ;
+  string folderName = create_time.str(); 
+	cout << " log path:  " << param.log_path << endl;
+	string logPath = param.log_path;
+//	string logPath = param.log_path.c_str();
+	folderPath = logPath + folderName ;
+	string create_command = "mkdir -p " + folderPath;  
+  int ret = system(create_command.c_str());
+
+  string log_p_x_path = folderPath + "/log_p_x.txt";
+	string log_p_y_path = folderPath + "/log_p_y.txt";
+	string log_p_z_path = folderPath + "/log_p_z.txt";
+	string log_v_x_path = folderPath + "/log_v_x.txt";
+	string log_v_y_path = folderPath + "/log_v_y.txt";
+	string log_v_z_path = folderPath + "/log_v_z.txt";
+	string log_yaw_path = folderPath + "/log_yaw.txt";
+	string log_u_roll_path = folderPath + "/log_u_roll.txt";
+	string log_u_pitch_path = folderPath + "/log_u_pitch.txt";
+	string log_u_yaw_path = folderPath + "/log_u_yaw.txt";
+	string log_u_thr_path = folderPath + "/log_u_thr.txt";
+	string log_hovper_path = folderPath + "/log_hovper.txt";
+	string log_t_path = folderPath + "/log_t.txt";
+
+	flightlog.log_p_x.open(log_p_x_path,std::ios::app);
+	flightlog.log_p_y.open(log_p_y_path,std::ios::app);
+	flightlog.log_p_z.open(log_p_z_path,std::ios::app);
+	flightlog.log_v_x.open(log_v_x_path,std::ios::app);
+	flightlog.log_v_y.open(log_v_y_path,std::ios::app);
+	flightlog.log_v_z.open(log_v_z_path,std::ios::app);
+	flightlog.log_yaw.open(log_yaw_path,std::ios::app);
+	flightlog.log_u_roll.open(log_u_roll_path,std::ios::app);
+	flightlog.log_u_pitch.open(log_u_pitch_path,std::ios::app);
+	flightlog.log_u_yaw.open(log_u_yaw_path,std::ios::app);
+	flightlog.log_u_thr.open(log_u_thr_path,std::ios::app);
+	flightlog.log_hovper.open(log_hovper_path,std::ios::app);
+	flightlog.log_t.open(log_t_path,std::ios::app);
+}
+
+void Logger::record_log(const ros::Time& now_time,const Desired_State_t& des,const Odom_Data_t& odom_data, 
+										const Controller_Output_t& u,const RC_Data_t& rc_data,const double& hovper){
+
+	flightlog.log_p_x << des.p.x() << "/" << odom_data.p.x() << endl;
+	flightlog.log_p_y << des.p.y() << "/" << odom_data.p.y() << endl;
+	flightlog.log_p_z << des.p.z() << "/" << odom_data.p.z() << endl;
+	flightlog.log_v_x << des.v.x() << "/" << odom_data.v.x() << endl;
+	flightlog.log_v_y << des.v.y() << "/" << odom_data.v.y() << endl;
+	flightlog.log_v_z << des.v.z() << "/" << odom_data.v.z() << endl;
+	flightlog.log_yaw << des.yaw << "/" << 2*std::atan2(odom_data.q.z(), odom_data.q.w()) / M_PI * 180.0 << endl;
+	flightlog.log_u_roll << rc_data.roll << "/" << toDeg(u.roll) << endl;
+	flightlog.log_u_pitch << rc_data.pitch << "/" << toDeg(u.pitch) << endl;
+	flightlog.log_u_yaw << rc_data.yaw << "/" << toDeg(u.yaw) << endl;
+	flightlog.log_u_thr << rc_data.thr << "/" << toDeg(u.thrust) << endl;
+	flightlog.log_hovper << hovper << endl;
+	flightlog.log_t << now_time.toSec() << endl;
+//	flightlog.log_des	<< now_time.toSec() << "/"
+//										<< des.p.x() << "/" << des.p.y() << "/" << des.p.z() << "/" 
+//										<< des.v.x() << "/" << des.v.y() << "/" << des.v.z() << "/" 
+//										<< des.yaw << "/" 
+//										<< endl;
+//	flightlog.log_odom	<< now_time.toSec() << "/"
+//											<< odom_data.p.x() << "/" << odom_data.p.y() << "/" << odom_data.p.z() << "/" 
+//											<< odom_data.v.x() << "/" << odom_data.v.y() << "/" << odom_data.v.z() << "/" 
+//											<< 2*std::atan2(odom_data.q.z(), odom_data.q.w()) / M_PI * 180.0 << "/" 
+//											<< odom_data.q.w() << "/" << odom_data.q.x() << "/" << odom_data.q.y() << "/" << odom_data.q.z() << "/" 
+//											<< endl;
+//	flightlog.log_ctrl	<< now_time.toSec() << "/"
+//											<< toDeg(u.roll) << "/" << toDeg(u.pitch) << "/" << toDeg(u.yaw) << u.thrust << "/"
+//											<< rc_data.roll << "/" << rc_data.pitch << "/" << rc_data.yaw << "/" << rc_data.thr << "/" 
+//											<< endl;		
+//							<< "fullthrust:" << param.full_thrust << "/" << "hov_percent" << hov_thr_kf.get_hov_thr() << endl;
+}

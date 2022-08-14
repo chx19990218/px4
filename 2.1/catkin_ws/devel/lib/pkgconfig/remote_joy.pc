@@ -1,0 +1,8 @@
+prefix=/home/chx/catkin_ws/devel
+
+Name: remote_joy
+Description: Description of remote_joy
+Version: 0.0.0
+Cflags: -I/home/chx/catkin_ws/src/remote_joy/include
+Libs: -L${prefix}/lib 
+Requires: sensor_msgs

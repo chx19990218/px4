@@ -1,0 +1,12 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~timeDelay1" : \b [double] remote_control timeDelay1 min: -0.1, default: 0.01, max: 0.1
+- \b "~decouplingSpeed" : \b [double] remote_control decouplingSpeed min: -0.1, default: 0.0, max: 0.1
+- \b "~decouplingSpeedDelay" : \b [double] remote_control decouplingSpeedDelay min: -0.1, default: 0.0, max: 0.1
+- \b "~decouplingAcc" : \b [double] remote_control decouplingAcc min: -0.1, default: 0.0, max: 0.1
+- \b "~decouplingAccDelay" : \b [double] remote_control decouplingAccDelay min: -0.1, default: 0.0, max: 0.1
+- \b "~decouplingVel" : \b [double] remote_control decouplingVel min: -0.1, default: 0.0, max: 0.1
+- \b "~decouplingVelDelay" : \b [double] remote_control decouplingVelDelay min: -0.1, default: 0.0, max: 0.1
+

@@ -1,0 +1,8 @@
+prefix=/home/chx/catkin_ws/devel
+
+Name: n3ctrl
+Description: Description of n3ctrl
+Version: 0.0.0
+Cflags: -I/home/chx/catkin_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: 

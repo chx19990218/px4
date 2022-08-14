@@ -1,0 +1,8 @@
+prefix=/home/chx/catkin_ws/devel
+
+Name: uav_utils
+Description: Description of uav_utils
+Version: 0.0.0
+Cflags: -I/home/chx/catkin_ws/src/uav_utils/include
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy

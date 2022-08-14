@@ -1,0 +1,8 @@
+prefix=/home/chx/catkin_ws/devel
+
+Name: mavros_apm
+Description: Description of mavros_apm
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: mavros_msgs roscpp std_msgs

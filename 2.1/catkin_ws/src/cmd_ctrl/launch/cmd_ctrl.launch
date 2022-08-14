@@ -1,0 +1,4 @@
+<launch>
+  <node pkg = "cmd_ctrl" type = "cmd_node" name = "cmd_ctrl" output = "screen">
+  </node>
+</launch>

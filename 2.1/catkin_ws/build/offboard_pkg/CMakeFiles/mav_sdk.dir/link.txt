@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC   -shared -Wl,-soname,libmav_sdk.so -o /home/chx/catkin_ws/devel/lib/libmav_sdk.so CMakeFiles/mav_sdk.dir/src/mav_sdk.cpp.o 

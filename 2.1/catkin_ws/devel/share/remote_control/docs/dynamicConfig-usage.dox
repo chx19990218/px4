@@ -1,0 +1,13 @@
+\subsubsection usage Usage
+\verbatim
+<node name="remote_control_gimbalStabilize" pkg="remote_control" type="remote_control_gimbalStabilize">
+  <param name="timeDelay1" type="double" value="0.01" />
+  <param name="decouplingSpeed" type="double" value="0.0" />
+  <param name="decouplingSpeedDelay" type="double" value="0.0" />
+  <param name="decouplingAcc" type="double" value="0.0" />
+  <param name="decouplingAccDelay" type="double" value="0.0" />
+  <param name="decouplingVel" type="double" value="0.0" />
+  <param name="decouplingVelDelay" type="double" value="0.0" />
+</node>
+\endverbatim
+

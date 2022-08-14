@@ -1,0 +1,23 @@
+<launch>
+	<arg name="uavname" default="uav0" />
+  <arg name="odom_topic" value="/odom" />
+
+	<node pkg="n3ctrl" type="n3ctrl_node" name="n3ctrl" output="screen">
+		<remap from="~odom" to="$(arg odom_topic)" />
+		<remap from="~joy" to="/rc" />
+		<remap from="~imu" to="/imu" />
+		<remap from="~ctrl" to="/ctrl" />
+		<remap from="~cmd" to="/cmd" />
+
+		<remap from="~desire_pose" to="/desire_pose" />
+		<remap from="~traj_start_trigger" to="/traj_start_trigger" />
+		
+
+    <rosparam command="load" file="$(find n3ctrl)/config/ctrl_param_$(arg uavname).yaml" />
+
+    <param name="work_mode" value="realtime" />
+    <param name="js_ctrl_mode" value="feedback" />
+		<param name = "log_path" value = "/home/ubuntu/catkin_ws/log/" />
+	</node>
+ 
+</launch>
